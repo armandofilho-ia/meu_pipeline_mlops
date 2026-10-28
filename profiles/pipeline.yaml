@@ -1,0 +1,27 @@
+template: "classification/v1"
+target_col: "target"
+positive_class: 1
+
+steps:
+  ingest:
+    using: "custom"
+    loader_method: "steps/ingest.py:load_file_as_dataframe"
+
+  split:
+    split_ratios: [0.75, 0.125, 0.125]
+
+  transform:
+    transformer_method: "steps/transform.py:transformer_fn"
+
+  train:
+    estimator_method: "steps/train.py:estimator_fn"
+
+  evaluate:
+    validation_criteria:
+      - metric: "accuracy_score"
+        threshold: 0.80
+
+  register:
+    model_name: "modelo-semana7"
+    allow_non_validated_model: false
+    

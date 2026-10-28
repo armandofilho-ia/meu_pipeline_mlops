@@ -1,0 +1,6 @@
+experiment:
+  name: "mlops_semana07_local"
+
+target_col: "target"
+
+model_archetype: "RandomForestClassifier"
